@@ -1,0 +1,24 @@
+CREATE SCHEMA IF NOT EXISTS `students`
+CHARSET utf8mb4 COLLATE utf8mb4_unicode_ci;
+===
+CREATE TABLE `students`.`student` (
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(45) NOT NULL);
+===
+CREATE TABLE `students`.`course` (
+  `id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `name` VARCHAR(45) NOT NULL);
+===
+CREATE TABLE  students_courses (
+	student_id int(11) NOT NULL,
+    course_id int(11) NOT NULL,
+
+    PRIMARY KEY(student_id, course_id),
+
+	CONSTRAINT FK_STUDENT FOREIGN KEY (student_id)
+    REFERENCES student (id)
+    ON DELETE NO ACTION ON UPDATE NO ACTION,
+
+    CONSTRAINT FK_COURSE FOREIGN KEY (course_id)
+    REFERENCES course (id)
+    ON DELETE NO ACTION ON UPDATE NO ACTION);
